@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script src="clipboard.min.js"></script>
+
+
+
+	<meta charset="UTF-8">
+	<title>Gerador de Proposta COMPAREX</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
+	
+	<style>
+		#btnEnvia {
+			background-color:#b41412;
+		}
+		
+		#idProposta {
+			background-color:#b41412;
+		}
+		
+	</style>
+</head>
+<body style="height: 100vh; background-image: url(http://i.imgur.com/67QUNgu.jpg);">
+ <script> new Clipboard('.btnCopy'); </script>
+	<style> 
+	.section {
+		background-color: initial!important;" }
+	</style>
+
+	<nav class="nav box">
+		<div class="nav-center">
+			<a class="nav-item">
+				<img src="Comparex_logo1.png" alt="Comparex logo">
+			</a>
+		</div>
+	</nav>
+
+	<!--<div class="section" style="padding-bottom: 0px; display: none;" >
+
+		<div class="columns">
+			<div class="column is-half is-offset-one-quarter">
+
+				<div class="notification is-primary">Proposta criada com sucesso.</div>
+			</div>
+		</div>
+	</div>-->
+
+	<div class="section" style="padding-top: 10px;>
+		<div class="container">
+
+			<div class="columns" >
+				<div class="column is-half is-offset-one-quarter box" >
+
+					<label class="label">Nome do Cliente</label>
+					<p class="control">
+						<input id="nome" class="input" type="text" placeholder="Digite aqui">
+					</p>
+
+					<label class="label">Tipo de propostas</label>
+					<p class="control ">
+						<span class="select is-fullwidth">
+							<select id="proposta" class="is-fullwidth">
+								<option>Selecione uma opção</option>
+								<option value="PSS">Professional Services</option>
+								<option value="GMS">Global Managed Services</option>
+								<option value="LMS">Local Managed Services</option>
+							</select>
+						</span>
+					</p>
+
+					<div class="control">
+						<p class="control">
+							<button id="btnEnvia" class="button is-primary is-fullwidth">Gerar</button>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="result" style="display: none;" class="section">
+		<div class="container">
+			<div class="columns">
+				<div class="column is-half is-offset-one-quarter">
+					<article class="message">
+						<div id="idProposta" class="message-header">
+							<p>Proposta</p>
+							<button id="closeProp" class="delete"></button>
+						</div>
+						<div class="message-body">
+							<button class="btnCopy" data-clipboard-target="#propsHere">Copiar</button>
+							<p id="propsHere"></p>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		let btnEnvia = document.querySelector('#btnEnvia');
+		let closeProp = document.querySelector('#closeProp');
+		let prop = document.querySelector('#propsHere');
+		let result = document.querySelector('#result');
+		let nome = document.querySelector('#nome');
+		let proposta = document.querySelector('#proposta');
+
+		function limpa() {
+
+			proposta.value = "Selecione uma opção";
+			nome.value = "";
+		}
+
+		function geraHash() {
+			
+			let random = Math.floor((Math.random() * 9999) + 1);
+			let hash = '2018'+ random + '-COMPAREX-'+ proposta.value + '-' + nome.value.replace(" ", "");
+			return hash;
+		}
+
+		closeProp.addEventListener('click', function() {
+
+			result.style.display = "none";
+		});
+
+		btnEnvia.addEventListener('click', function() {
+
+			prop.textContent = geraHash();
+			result.style.display = "block";
+			limpa();
+		});
+
+		
+
+
+
+// ano + random 4 -COMPAREX-tipo-nome
+
+
+
+
+
+
+</script>
+</body>
+
+</html>
